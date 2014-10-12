@@ -122,6 +122,8 @@ public:
 	}
 
 	//
+	
+	bool isExporting() const { return do_export; }
 
 	void startExport()
 	{
