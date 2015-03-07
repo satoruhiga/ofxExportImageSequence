@@ -137,6 +137,8 @@ public:
 	}
 
 	//
+	
+	bool isExporting() const { return do_export; }
 
 	void startExport()
 	{
@@ -179,8 +181,6 @@ public:
 
 	//
 	
-	bool isExporting() const { return do_export; }
-
 	int getFrameNum() const { return frame_count; }
 	float getElapsedTime() const { return frame_count * inv_fps; }
 
