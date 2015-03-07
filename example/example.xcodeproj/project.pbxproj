@@ -23,6 +23,8 @@
 		E4C2424810CC5A17004149E2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424510CC5A17004149E2 /* Cocoa.framework */; };
 		E4C2424910CC5A17004149E2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424610CC5A17004149E2 /* IOKit.framework */; };
 		E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		E7C388121AAB4B7300400CA0 /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C388111AAB4B7300400CA0 /* libtiff.a */; };
+		E7C388141AAB4BB900400CA0 /* ofxExportImageSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C388131AAB4BB900400CA0 /* ofxExportImageSequence.cpp */; };
 		E7E077E515D3B63C0020DFD4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */; };
 		E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E715D3B6510020DFD4 /* QTKit.framework */; };
 		E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F985F515E0DE99003869B5 /* Accelerate.framework */; };
@@ -79,6 +81,12 @@
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E743A395193492EA004EE0E4 /* ofxExportImageSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxExportImageSequence.h; sourceTree = "<group>"; };
+		E7C3880B1AAB4B7300400CA0 /* tiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiff.h; sourceTree = "<group>"; };
+		E7C3880C1AAB4B7300400CA0 /* tiffconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiffconf.h; sourceTree = "<group>"; };
+		E7C3880D1AAB4B7300400CA0 /* tiffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiffio.h; sourceTree = "<group>"; };
+		E7C3880E1AAB4B7300400CA0 /* tiffvers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiffvers.h; sourceTree = "<group>"; };
+		E7C388111AAB4B7300400CA0 /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtiff.a; sourceTree = "<group>"; };
+		E7C388131AAB4BB900400CA0 /* ofxExportImageSequence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxExportImageSequence.cpp; sourceTree = "<group>"; };
 		E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		E7E077E715D3B6510020DFD4 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		E7F985F515E0DE99003869B5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
@@ -91,6 +99,7 @@
 			files = (
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
+				E7C388121AAB4B7300400CA0 /* libtiff.a in Frameworks */,
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
@@ -200,6 +209,7 @@
 		E743A393193492E6004EE0E4 /* ofxExportImageSequence */ = {
 			isa = PBXGroup;
 			children = (
+				E7C388081AAB4B7300400CA0 /* libs */,
 				E743A394193492EA004EE0E4 /* src */,
 			);
 			name = ofxExportImageSequence;
@@ -208,10 +218,56 @@
 		E743A394193492EA004EE0E4 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				E7C388131AAB4BB900400CA0 /* ofxExportImageSequence.cpp */,
 				E743A395193492EA004EE0E4 /* ofxExportImageSequence.h */,
 			);
 			name = src;
 			path = ../src;
+			sourceTree = "<group>";
+		};
+		E7C388081AAB4B7300400CA0 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				E7C388091AAB4B7300400CA0 /* libtiff */,
+			);
+			name = libs;
+			path = ../libs;
+			sourceTree = "<group>";
+		};
+		E7C388091AAB4B7300400CA0 /* libtiff */ = {
+			isa = PBXGroup;
+			children = (
+				E7C3880A1AAB4B7300400CA0 /* include */,
+				E7C3880F1AAB4B7300400CA0 /* lib */,
+			);
+			path = libtiff;
+			sourceTree = "<group>";
+		};
+		E7C3880A1AAB4B7300400CA0 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				E7C3880B1AAB4B7300400CA0 /* tiff.h */,
+				E7C3880C1AAB4B7300400CA0 /* tiffconf.h */,
+				E7C3880D1AAB4B7300400CA0 /* tiffio.h */,
+				E7C3880E1AAB4B7300400CA0 /* tiffvers.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		E7C3880F1AAB4B7300400CA0 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				E7C388101AAB4B7300400CA0 /* osx */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		E7C388101AAB4B7300400CA0 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				E7C388111AAB4B7300400CA0 /* libtiff.a */,
+			);
+			path = osx;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7C388141AAB4BB900400CA0 /* ofxExportImageSequence.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,6 +514,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
+					/Users/satoruhiga/Documents/openFrameworks/of_v0.8.4/addons/ofxExportImageSequence/libs/libtiff/lib/osx,
 				);
 				PRODUCT_NAME = exampleDebug;
 				WRAPPER_EXTENSION = app;
@@ -542,6 +600,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_49)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
+					/Users/satoruhiga/Documents/openFrameworks/of_v0.8.4/addons/ofxExportImageSequence/libs/libtiff/lib/osx,
 				);
 				PRODUCT_NAME = example;
 				WRAPPER_EXTENSION = app;

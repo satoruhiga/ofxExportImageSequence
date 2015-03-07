@@ -2,9 +2,19 @@
 
 #include "ofMain.h"
 
+#include "Poco/ThreadPool.h"
+#include "Poco/TaskManager.h"
+
 class ofxExportImageSequence
 {
 public:
+	
+	enum Compression {
+		UNCOMPRESSED, // Fastest, super fat file size
+		PACKBITS, // Good barance
+		LZW // Same to ofSaveImage
+	};
+
 	ofxExportImageSequence()
 		: cam_ptr(NULL)
 		, width(0)
@@ -16,7 +26,14 @@ public:
 		, out_frame(0)
 		, overwrite_sequence(false)
 		, auto_exit(false)
+		, compression(PACKBITS)
+		, threadpool(1)
+		, taskmanager(threadpool)
+	{}
+	
+	~ofxExportImageSequence()
 	{
+		threadpool.joinAll();
 	}
 
 	void setup(int width, int height, float fps, GLint internalformat = GL_RGB,
@@ -80,9 +97,7 @@ public:
 
 			ofPixels pix;
 			fbo.readToPixels(pix);
-			ofSaveImage(pix, buf);
-
-			ofLogNotice("ofxExportImageSequence") << "saved: " << buf;
+			saveImage(pix, buf);
 
 			frame_count++;
 
@@ -134,6 +149,8 @@ public:
 			string path = ofFilePath::getEnclosingDirectory(pattern);
 			ofDirectory::removeDirectory(path, true);
 		}
+		
+		ofDirectory::createDirectory(ofFile(pattern).getEnclosingDirectory(), true, true);
 	}
 
 	void stopExport() { do_export = false; }
@@ -144,13 +161,11 @@ public:
 		this->out_frame = out_frame;
 	}
 
-	void setOutputDir(const string& path, const string& extension = "tif")
+	void setOutputDir(const string& path)
 	{
 		export_path = path;
-		setFilePattern(path + "/" + path + "_%05i." + extension);
+		this->pattern = path + "/" + path + "_%05i.tif";
 	}
-
-	void setFilePattern(const string& pattern) { this->pattern = pattern; }
 
 	const string& getFilePattern() const { return pattern; }
 
@@ -159,8 +174,12 @@ public:
 
 	void setAutoExit(bool yn) { auto_exit = yn; }
 	bool getAutoExit() const { return auto_exit; }
+	
+	void setCompression(Compression v) { compression = v; }
 
 	//
+	
+	bool isExporting() const { return do_export; }
 
 	int getFrameNum() const { return frame_count; }
 	float getElapsedTime() const { return frame_count * inv_fps; }
@@ -186,4 +205,11 @@ protected:
 
 	ofFbo fbo;
 	ofCamera* cam_ptr;
+	
+	Compression compression;
+	
+	Poco::ThreadPool threadpool;
+	Poco::TaskManager taskmanager;
+	
+	void saveImage(const ofPixels& pix, const string& path);
 };
