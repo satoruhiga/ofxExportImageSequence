@@ -51,6 +51,7 @@ public:
 		s.height = height;
 		s.internalformat = internalformat;
 		s.numSamples = num_samples;
+		s.useDepth = true;
 		fbo.allocate(s);
 
 		fbo.begin();
@@ -182,7 +183,22 @@ public:
 	//
 	
 	int getFrameNum() const { return frame_count; }
-	float getElapsedTime() const { return frame_count * inv_fps; }
+	
+	float getElapsedTime() const
+	{
+		if (do_export)
+			return frame_count * inv_fps;
+		else
+			return ofGetElapsedTimef();
+	}
+	
+	float getLastFrameTime() const
+	{
+		if (do_export)
+			return inv_fps;
+		else
+			return ofGetLastFrameTime();
+	}
 
 	ofFbo& getFbo() { return fbo; }
 
