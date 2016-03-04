@@ -514,7 +514,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
-					/Users/satoruhiga/Documents/openFrameworks/of_v0.8.4/addons/ofxExportImageSequence/libs/libtiff/lib/osx,
+					../../../addons/ofxExportImageSequence/libs/libtiff/lib/osx,
 				);
 				PRODUCT_NAME = exampleDebug;
 				WRAPPER_EXTENSION = app;
@@ -600,7 +600,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_49)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
-					/Users/satoruhiga/Documents/openFrameworks/of_v0.8.4/addons/ofxExportImageSequence/libs/libtiff/lib/osx,
+					../../../addons/ofxExportImageSequence/libs/libtiff/lib/osx,
 				);
 				PRODUCT_NAME = example;
 				WRAPPER_EXTENSION = app;
